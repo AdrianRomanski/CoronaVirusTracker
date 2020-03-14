@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>CoronaVirus Tracking API</title>
+</head>
+
+<body>
+
+<table>
+    <tr>
+        <th>State</th>
+        <th>Country</th>
+        <th>Total cases reported</th>
+    </tr>
+    <tr th:each="locationStat : ${locationsStats}">
+        <td th:text="${locationStat.state}"></td>
+        <td th:text="${locationStat.country}"></td>
+        <td th:text="${locationStat.getLatestTotalCases()}"></td>
+    </tr>
+</table>
+
+</body>
+
+</html>
