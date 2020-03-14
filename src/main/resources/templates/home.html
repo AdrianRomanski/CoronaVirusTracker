@@ -28,6 +28,12 @@
         <span>is the Country with biggest income of new cases:</span>
         <span th:text="${topDiffCountry.getDiffFromPrevDay()}"></span>
     </p>
+    <p style="color: red">
+        <span th:text="${topCasesCountry.getCountry()}"></span>
+        <span>is the Country with biggest number of total Cases:</span>
+        <span th:text="${topDiffCountry.getLatestTotalCases()}"></span>
+    </p>
+
 </div>
 
 <table class="table">

@@ -20,15 +20,17 @@ public class HomeController {
         List<LocationStats> allStats =coronaVirusDataService.getAllStats();
         int totalCases = allStats.stream().mapToInt(LocationStats::getLatestTotalCases).sum();
         int totalNewCases = allStats.stream().mapToInt(LocationStats::getDiffFromPrevDay).sum();
-
         allStats.sort((allStats1, allStats2) -> allStats2.getDiffFromPrevDay() - allStats1.getDiffFromPrevDay());
-
         LocationStats topDiffCountry = allStats.get(0);
+        allStats.sort((allStats1, allStats2) -> allStats2.getLatestTotalCases() - allStats1.getLatestTotalCases());
+        LocationStats topCasesCountry = allStats.get(0);
+        allStats.sort(Comparator.comparing(LocationStats::getCountry));
 
         model.addAttribute("locationsStats", allStats);
         model.addAttribute("totalReportedCases", totalCases);
         model.addAttribute("totalNewCases", totalNewCases);
         model.addAttribute("topDiffCountry", topDiffCountry);
+        model.addAttribute("topCasesCountry", topCasesCountry);
         return "home";
     }
 }
