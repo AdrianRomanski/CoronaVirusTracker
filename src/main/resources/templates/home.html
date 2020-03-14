@@ -2,11 +2,23 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
+
 <head>
     <title>CoronaVirus Tracking API</title>
+    <meta http-equiv="Content-Type" charset="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 <body>
+
+<h1>Coronavirus Tracker Application</h1>
+<p>This application lists the current number of cases reported across the globe</p>
+
+<div class="jumbotron">
+    <h1 class="display-4" th:text="${totalReportedCases}">Total cases</h1>
+    <p class="lead">Total cases reported as of today</p>
+
+</div>
 
 <table>
     <tr>
