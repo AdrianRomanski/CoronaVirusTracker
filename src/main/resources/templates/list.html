@@ -12,29 +12,7 @@
 
 <body>
 <div class="container">
-<h1>Coronavirus Tracker Application</h1>
-<p>This application lists the current number of cases reported across the globe</p>
-
-<div class="jumbotron">
-    <h1 class="display-4" th:text="${totalReportedCases}">Total cases</h1>
-    <p class="lead">Total cases reported as of today</p>
-    <hr class="my-4">
-    <p>
-        <span>New cases reported since previous day:</span>
-        <span th:text="${totalNewCases}"></span>
-    </p>
-    <p style="color: red">
-        <span th:text="${topDiffCountry.getCountry()}"></span>
-        <span>is the Country with biggest income of new cases:</span>
-        <span th:text="${topDiffCountry.getDiffFromPrevDay()}"></span>
-    </p>
-    <p style="color: red">
-        <span th:text="${topCasesCountry.getCountry()}"></span>
-        <span>is the Country with biggest number of total Cases:</span>
-        <span th:text="${topDiffCountry.getLatestTotalCases()}"></span>
-    </p>
-
-</div>
+<h1 align="center" >Countries</h1>
 
 <table class="table">
     <tr>

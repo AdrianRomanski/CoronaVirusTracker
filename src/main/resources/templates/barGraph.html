@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <!-- Optional theme -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+
+</head>
+<body>
+<div class="container">
+    <h1 align="center">Coronavirus Tracker Application</h1>
+    <p align="center">This application lists the current number of cases reported across the globe</p>
+
+    <div class="jumbotron">
+        <h1 align="center" class="display-4" th:text="${totalReportedCases}">Total cases</h1>
+        <p  align="center" class="lead">Total cases reported as of today</p>
+        <hr class="my-4">
+        <p>
+            <a th:href="@{/home}">New Cases</a>
+            <span>reported since previous day:</span>
+            <span th:text="${totalNewCases}"></span>
+        </p>
+        <p>
+            <a th:href="@{/home}"><span th:text="${topDiffCountry.getCountry()}"></span></a>
+            <span>is the Country with biggest income of new cases:</span>
+            <span th:text="${topDiffCountry.getDiffFromPrevDay()}"></span>
+
+        </p>
+        <p>
+            <a th:href="@{/home}"><span th:text="${topCasesCountry.getCountry()}"></span></a>
+            <span>is the Country with biggest number of total Cases:</span>
+            <span th:text="${topCasesCountry.getLatestTotalCases()}"></span>
+        </p>
+
+</div>
+<div class="container, container1">
+    <h2 align="center">Technology Line Graph</h2>
+
+    <div id="container"
+         style="width: 800px; height: 400px; margin: 0px"></div>
+    <div id="container1"
+         style="width: 400px; height: 250px; margin: 15px"></div>
+</div>
+
+
+<script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script th:inline="javascript">
+
+    $(function(){
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Biggest income of new infected'
+            },
+            xAxis: {
+                categories: [[${topDiff.keySet()}]],
+                crosshair: true
+            },
+            yAxis: {
+                title: {
+                    text: 'New Cases'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} K</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Technology',
+                data: [[${topDiff.values()}]]
+            }]
+        });
+    });
+</script>
+</div>
+</body>
+</html>
